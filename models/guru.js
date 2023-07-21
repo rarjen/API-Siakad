@@ -2,23 +2,18 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Guru extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
-      Guru.hasMany(models.Kelas, {
-        foreignKey: "guru_id",
-        as: "kelas",
-      });
       Guru.hasMany(models.Rapot, {
         foreignKey: "guru_id",
         as: "rapot",
       });
       Guru.belongsTo(models.Mapel, {
-        foreignKey: "guru_id",
+        foreignKey: "mapel_id",
         as: "mapel",
+      });
+      Guru.hasMany(models.Kelas, {
+        foreignKey: "guru_id",
+        as: "kelas",
       });
     }
   }
