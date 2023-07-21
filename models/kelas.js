@@ -2,11 +2,6 @@
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Kelas extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       Kelas.hasMany(models.Siswa, {
         foreignKey: "kelas_id",
@@ -20,13 +15,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "kelas_id",
         as: "rapot",
       });
-      Kelas.belongsTo(models.Guru, {
-        foreignKey: "guru_id",
-        as: "guru",
-      });
       Kelas.belongsTo(models.Paket, {
         foreignKey: "paket_id",
         as: "paket",
+      });
+      Kelas.belongsTo(models.Guru, {
+        foreignKey: "guru_id",
+        as: "guru",
       });
     }
   }
