@@ -91,29 +91,4 @@ const indexReport = async (req) => {
   return result;
 };
 
-const indexTeachers = async (req) => {
-  const result = await Guru.findAll({});
-
-  return result;
-};
-
-const indexClasses = async (req) => {
-  const result = await Kelas.findAll({
-    include: [
-      {
-        model: Paket,
-        as: "paket",
-        attributes: { exclude: ["created_at", "updated_at"] },
-      },
-      {
-        model: Guru,
-        as: "guru",
-        // attributes: { exclude: ["created_at", "updated_at"] },
-      },
-    ],
-  });
-
-  return result;
-};
-
-module.exports = { indexUlangan, indexReport, indexTeachers, indexClasses };
+module.exports = { indexUlangan, indexReport };
