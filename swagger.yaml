@@ -1,0 +1,1165 @@
+openapi: 3.0.0
+x-stoplight:
+  id: l99pbz5r7c0zr
+info:
+  title: API Siakad
+  version: "1.0"
+servers:
+  - url: "http://localhost:3000"
+    description: Local server
+paths:
+  /auth/register:
+    post:
+      summary: Register Siswa
+      operationId: post-auth-register
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      name:
+                        type: string
+                      email:
+                        type: string
+                      password:
+                        type: string
+                      role:
+                        type: string
+                      no_induk:
+                        type: string
+                      updated_at:
+                        type: string
+                      created_at:
+                        type: string
+                x-examples:
+                  Example 1:
+                    status: true
+                    message: Berhasil register!
+                    data:
+                      id: 3
+                      name: asdfdg
+                      email: "1234"
+                      password: $2b$10$8ZS5pJ3az5a/w4QUccpgL.4vjNSDWRBK1lPZTlpFkDXsvkknBapOi
+                      role: Siswa
+                      no_induk: "123"
+                      updated_at: "2023-07-20T02:55:49.520Z"
+                      created_at: "2023-07-20T02:55:49.520Z"
+              examples:
+                Example 1:
+                  value:
+                    status: true
+                    message: Berhasil register!
+                    data:
+                      id: 3
+                      name: asdfdg
+                      email: "1234"
+                      password: $2b$10$8ZS5pJ3az5a/w4QUccpgL.4vjNSDWRBK1lPZTlpFkDXsvkknBapOi
+                      role: Siswa
+                      no_induk: "123"
+                      updated_at: "2023-07-20T02:55:49.520Z"
+                      created_at: "2023-07-20T02:55:49.520Z"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  Example 1:
+                    message: Data siswa tidak ditemukan
+              examples:
+                "Example 1: Not Found ":
+                  value:
+                    message: Data siswa tidak ditemukan
+                Example 2:
+                  value:
+                    message: Password doesn't match
+      description: Endpoint registration for siswa
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nis:
+                  type: string
+                password:
+                  type: string
+                confirm_password:
+                  type: string
+              x-examples:
+                Example 1:
+                  nis: "1234"
+                  password: qwerty123
+                  confirm_password: qwerty123
+            examples:
+              Example 1:
+                value:
+                  nis: "1234"
+                  password: qwerty123
+                  confirm_password: qwerty123
+      tags:
+        - Auth
+  /auth/login:
+    post:
+      summary: Login Siswa
+      operationId: post-auth-login
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: string
+                x-examples:
+                  Example 1:
+                    status: true
+                    message: Berhasil login!
+                    data: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywic2lzd2FfaWQiOjEsIm5hbWUiOiJhc2RmZGciLCJlbWFpbCI6IjEyMzQiLCJyb2xlIjoiU2lzd2EiLCJub19pbmR1ayI6IjEyMyIsImlkX2NhcmQiOm51bGwsImlhdCI6MTY4OTk5Mzg0Nn0._zg9_wkURMVlugW0QWiNcRV8xy3_p3lcUqv1RerVqtQ
+              examples:
+                Example 1:
+                  value:
+                    status: true
+                    message: Berhasil login!
+                    data: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywic2lzd2FfaWQiOjEsIm5hbWUiOiJhc2RmZGciLCJlbWFpbCI6IjEyMzQiLCJyb2xlIjoiU2lzd2EiLCJub19pbmR1ayI6IjEyMyIsImlkX2NhcmQiOm51bGwsImlhdCI6MTY4OTk5Mzg0Nn0._zg9_wkURMVlugW0QWiNcRV8xy3_p3lcUqv1RerVqtQ
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  Example 1:
+                    message: Email atau password salah
+              examples:
+                Example 1:
+                  value:
+                    message: Email atau password salah
+      description: Endpoint login for siswa
+      tags:
+        - Auth
+  /students/results:
+    get:
+      summary: Get Results
+      tags:
+        - Students
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        ulha_1:
+                          type: string
+                        ulha_2:
+                          type: string
+                        uts:
+                          type: string
+                        ulha_3:
+                          type: string
+                        uas:
+                          type: string
+                        siswa:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            no_induk:
+                              type: string
+                            nis:
+                              type: string
+                            nama_siswa:
+                              type: string
+                            jk:
+                              type: string
+                            telp:
+                              type: string
+                            tmp_lahir:
+                              type: string
+                            tgl_lahir:
+                              type: string
+                            foto:
+                              type: string
+                        kelas:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            nama_kelas:
+                              type: string
+                            paket:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                ket:
+                                  type: string
+                            guru:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                id_card:
+                                  type: string
+                                nip:
+                                  type: string
+                                nama_guru:
+                                  type: string
+                                mapel_id:
+                                  type: integer
+                                kode:
+                                  type: string
+                                jk:
+                                  type: string
+                                telp:
+                                  type: string
+                                tmp_lahir:
+                                  type: string
+                                tgl_lahir:
+                                  type: string
+                                foto:
+                                  type: string
+                x-examples:
+                  Example 1:
+                    status: true
+                    message: OK
+                    data:
+                      - ulha_1: "76"
+                        ulha_2: "85"
+                        uts: "90"
+                        ulha_3: "76"
+                        uas: "89"
+                        siswa:
+                          id: 1
+                          no_induk: "123"
+                          nis: "1234"
+                          nama_siswa: asdfdg
+                          jk: L
+                          telp: "08541203235"
+                          tmp_lahir: Tulungaggung
+                          tgl_lahir: "2023-07-02"
+                          foto: uploads/siswa/28481114072023_lemari.jpg
+                        kelas:
+                          id: 1
+                          nama_kelas: RPL COK
+                          paket:
+                            id: 7
+                            ket: Rekayasa Perangkat Lunak
+                          guru:
+                            id: 1
+                            id_card: "00001"
+                            nip: "12345"
+                            nama_guru: Harry Mochty
+                            mapel_id: 1
+                            kode: "122"
+                            jk: L
+                            telp: "08541203214"
+                            tmp_lahir: Tulungaggung
+                            tgl_lahir: "2023-07-12"
+                            foto: uploads/guru/33461114072023_kursi.jpg
+              examples:
+                Example 1:
+                  value:
+                    status: true
+                    message: OK
+                    data:
+                      - ulha_1: "76"
+                        ulha_2: "85"
+                        uts: "90"
+                        ulha_3: "76"
+                        uas: "89"
+                        siswa:
+                          id: 1
+                          no_induk: "123"
+                          nis: "1234"
+                          nama_siswa: asdfdg
+                          jk: L
+                          telp: "08541203235"
+                          tmp_lahir: Tulungaggung
+                          tgl_lahir: "2023-07-02"
+                          foto: uploads/siswa/28481114072023_lemari.jpg
+                        kelas:
+                          id: 1
+                          nama_kelas: RPL COK
+                          paket:
+                            id: 7
+                            ket: Rekayasa Perangkat Lunak
+                          guru:
+                            id: 1
+                            id_card: "00001"
+                            nip: "12345"
+                            nama_guru: Harry Mochty
+                            mapel_id: 1
+                            kode: "122"
+                            jk: L
+                            telp: "08541203214"
+                            tmp_lahir: Tulungaggung
+                            tgl_lahir: "2023-07-12"
+                            foto: uploads/guru/33461114072023_kursi.jpg
+      operationId: get-students-results
+      description: Get ulangan for siswa
+      security:
+        - bearerAuth: []
+  /students/reports:
+    get:
+      summary: Get Report
+      tags:
+        - Students
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        p_nilai:
+                          type: string
+                        p_predikat:
+                          type: string
+                        p_deskripsi:
+                          type: string
+                        k_nilai:
+                          type: string
+                        k_predikat:
+                          type: string
+                        k_deskripsi:
+                          type: string
+                        siswa:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            no_induk:
+                              type: string
+                            nis:
+                              type: string
+                            nama_siswa:
+                              type: string
+                            jk:
+                              type: string
+                            telp:
+                              type: string
+                            tmp_lahir:
+                              type: string
+                            tgl_lahir:
+                              type: string
+                            foto:
+                              type: string
+                        kelas:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            nama_kelas:
+                              type: string
+                            paket:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                ket:
+                                  type: string
+                        guru:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            id_card:
+                              type: string
+                            nip:
+                              type: string
+                            nama_guru:
+                              type: string
+                            kode:
+                              type: string
+                            jk:
+                              type: string
+                            telp:
+                              type: string
+                            tmp_lahir:
+                              type: string
+                            tgl_lahir:
+                              type: string
+                            foto:
+                              type: string
+                        mapel:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            nama_mapel:
+                              type: string
+                            kelompok:
+                              type: string
+                x-examples:
+                  Example 1:
+                    status: true
+                    message: OK
+                    data:
+                      - p_nilai: "84"
+                        p_predikat: B
+                        p_deskripsi: 80-89
+                        k_nilai: "90"
+                        k_predikat: B
+                        k_deskripsi: Baik
+                        siswa:
+                          id: 1
+                          no_induk: "123"
+                          nis: "1234"
+                          nama_siswa: asdfdg
+                          jk: L
+                          telp: "08541203235"
+                          tmp_lahir: Tulungaggung
+                          tgl_lahir: "2023-07-02"
+                          foto: uploads/siswa/28481114072023_lemari.jpg
+                        kelas:
+                          id: 1
+                          nama_kelas: RPL COK
+                          paket:
+                            id: 7
+                            ket: Rekayasa Perangkat Lunak
+                        guru:
+                          id: 1
+                          id_card: "00001"
+                          nip: "12345"
+                          nama_guru: Harry Mochty
+                          kode: "122"
+                          jk: L
+                          telp: "08541203214"
+                          tmp_lahir: Tulungaggung
+                          tgl_lahir: "2023-07-12"
+                          foto: uploads/guru/33461114072023_kursi.jpg
+                        mapel:
+                          id: 1
+                          nama_mapel: RPL-1
+                          kelompok: A
+              examples:
+                Example 1:
+                  value:
+                    status: true
+                    message: OK
+                    data:
+                      - p_nilai: "84"
+                        p_predikat: B
+                        p_deskripsi: 80-89
+                        k_nilai: "90"
+                        k_predikat: B
+                        k_deskripsi: Baik
+                        siswa:
+                          id: 1
+                          no_induk: "123"
+                          nis: "1234"
+                          nama_siswa: asdfdg
+                          jk: L
+                          telp: "08541203235"
+                          tmp_lahir: Tulungaggung
+                          tgl_lahir: "2023-07-02"
+                          foto: uploads/siswa/28481114072023_lemari.jpg
+                        kelas:
+                          id: 1
+                          nama_kelas: RPL COK
+                          paket:
+                            id: 7
+                            ket: Rekayasa Perangkat Lunak
+                        guru:
+                          id: 1
+                          id_card: "00001"
+                          nip: "12345"
+                          nama_guru: Harry Mochty
+                          kode: "122"
+                          jk: L
+                          telp: "08541203214"
+                          tmp_lahir: Tulungaggung
+                          tgl_lahir: "2023-07-12"
+                          foto: uploads/guru/33461114072023_kursi.jpg
+                        mapel:
+                          id: 1
+                          nama_mapel: RPL-1
+                          kelompok: A
+      operationId: get-students-reports
+      description: Get rapot for siswa
+      security:
+        - bearerAuth: []
+  /classes:
+    get:
+      summary: Get All Classes
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        nama_kelas:
+                          type: string
+                        guru_id:
+                          type: integer
+                        paket:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            ket:
+                              type: string
+                        guru:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            id_card:
+                              type: string
+                            nip:
+                              type: string
+                            nama_guru:
+                              type: string
+                            kode:
+                              type: string
+                            jk:
+                              type: string
+                            telp:
+                              type: string
+                            tmp_lahir:
+                              type: string
+                            tgl_lahir:
+                              type: string
+                            foto:
+                              type: string
+                            mapel:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                nama_mapel:
+                                  type: string
+                                kelompok:
+                                  type: string
+                x-examples:
+                  Example 1:
+                    status: true
+                    message: OK
+                    data:
+                      - id: 1
+                        nama_kelas: RPL COK
+                        guru_id: 1
+                        paket:
+                          id: 7
+                          ket: Rekayasa Perangkat Lunak
+                        guru:
+                          id: 1
+                          id_card: "00001"
+                          nip: "12345"
+                          nama_guru: Harry Mochty
+                          kode: "122"
+                          jk: L
+                          telp: "08541203214"
+                          tmp_lahir: Tulungaggung
+                          tgl_lahir: "2023-07-12"
+                          foto: uploads/guru/33461114072023_kursi.jpg
+                          mapel:
+                            id: 1
+                            nama_mapel: RPL-1
+                            kelompok: A
+              examples:
+                Example 1:
+                  value:
+                    status: true
+                    message: OK
+                    data:
+                      - id: 1
+                        nama_kelas: RPL COK
+                        guru_id: 1
+                        paket:
+                          id: 7
+                          ket: Rekayasa Perangkat Lunak
+                        guru:
+                          id: 1
+                          id_card: "00001"
+                          nip: "12345"
+                          nama_guru: Harry Mochty
+                          kode: "122"
+                          jk: L
+                          telp: "08541203214"
+                          tmp_lahir: Tulungaggung
+                          tgl_lahir: "2023-07-12"
+                          foto: uploads/guru/33461114072023_kursi.jpg
+                          mapel:
+                            id: 1
+                            nama_mapel: RPL-1
+                            kelompok: A
+      operationId: get-classes
+      tags:
+        - Classes
+      security:
+        - bearerAuth: []
+  "/classes/{class_id}":
+    get:
+      summary: Get All Classes
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        nama_kelas:
+                          type: string
+                        guru_id:
+                          type: integer
+                        paket:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            ket:
+                              type: string
+                        guru:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            id_card:
+                              type: string
+                            nip:
+                              type: string
+                            nama_guru:
+                              type: string
+                            kode:
+                              type: string
+                            jk:
+                              type: string
+                            telp:
+                              type: string
+                            tmp_lahir:
+                              type: string
+                            tgl_lahir:
+                              type: string
+                            foto:
+                              type: string
+                            mapel:
+                              type: object
+                              properties:
+                                id:
+                                  type: integer
+                                nama_mapel:
+                                  type: string
+                                kelompok:
+                                  type: string
+                x-examples:
+                  Example 1:
+                    status: true
+                    message: OK
+                    data:
+                      - id: 1
+                        nama_kelas: RPL COK
+                        guru_id: 1
+                        paket:
+                          id: 7
+                          ket: Rekayasa Perangkat Lunak
+                        guru:
+                          id: 1
+                          id_card: "00001"
+                          nip: "12345"
+                          nama_guru: Harry Mochty
+                          kode: "122"
+                          jk: L
+                          telp: "08541203214"
+                          tmp_lahir: Tulungaggung
+                          tgl_lahir: "2023-07-12"
+                          foto: uploads/guru/33461114072023_kursi.jpg
+                          mapel:
+                            id: 1
+                            nama_mapel: RPL-1
+                            kelompok: A
+              examples:
+                Example 1:
+                  value:
+                    status: true
+                    message: OK
+                    data:
+                      - id: 1
+                        nama_kelas: RPL COK
+                        guru_id: 1
+                        paket:
+                          id: 7
+                          ket: Rekayasa Perangkat Lunak
+                        guru:
+                          id: 1
+                          id_card: "00001"
+                          nip: "12345"
+                          nama_guru: Harry Mochty
+                          kode: "122"
+                          jk: L
+                          telp: "08541203214"
+                          tmp_lahir: Tulungaggung
+                          tgl_lahir: "2023-07-12"
+                          foto: uploads/guru/33461114072023_kursi.jpg
+                          mapel:
+                            id: 1
+                            nama_mapel: RPL-1
+                            kelompok: A
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  Example 1:
+                    message: Kelas tidak ditemukan!
+              examples:
+                Example 1:
+                  value:
+                    message: Kelas tidak ditemukan!
+        "":
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      nama_kelas:
+                        type: string
+                      guru_id:
+                        type: integer
+                      paket:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          ket:
+                            type: string
+                      guru:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          id_card:
+                            type: string
+                          nip:
+                            type: string
+                          nama_guru:
+                            type: string
+                          kode:
+                            type: string
+                          jk:
+                            type: string
+                          telp:
+                            type: string
+                          tmp_lahir:
+                            type: string
+                          tgl_lahir:
+                            type: string
+                          foto:
+                            type: string
+                          mapel:
+                            type: object
+                            properties:
+                              id:
+                                type: integer
+                              nama_mapel:
+                                type: string
+                              kelompok:
+                                type: string
+                x-examples:
+                  Example 1:
+                    status: true
+                    message: OK
+                    data:
+                      id: 1
+                      nama_kelas: RPL COK
+                      guru_id: 1
+                      paket:
+                        id: 7
+                        ket: Rekayasa Perangkat Lunak
+                      guru:
+                        id: 1
+                        id_card: "00001"
+                        nip: "12345"
+                        nama_guru: Harry Mochty
+                        kode: "122"
+                        jk: L
+                        telp: "08541203214"
+                        tmp_lahir: Tulungaggung
+                        tgl_lahir: "2023-07-12"
+                        foto: uploads/guru/33461114072023_kursi.jpg
+                        mapel:
+                          id: 1
+                          nama_mapel: RPL-1
+                          kelompok: A
+              examples:
+                Example 1:
+                  value:
+                    status: true
+                    message: OK
+                    data:
+                      id: 1
+                      nama_kelas: RPL COK
+                      guru_id: 1
+                      paket:
+                        id: 7
+                        ket: Rekayasa Perangkat Lunak
+                      guru:
+                        id: 1
+                        id_card: "00001"
+                        nip: "12345"
+                        nama_guru: Harry Mochty
+                        kode: "122"
+                        jk: L
+                        telp: "08541203214"
+                        tmp_lahir: Tulungaggung
+                        tgl_lahir: "2023-07-12"
+                        foto: uploads/guru/33461114072023_kursi.jpg
+                        mapel:
+                          id: 1
+                          nama_mapel: RPL-1
+                          kelompok: A
+      operationId: get-class-index
+      tags:
+        - Classes
+      security:
+        - bearerAuth: []
+      description: Endpoint get class by Id
+    parameters:
+      - schema:
+          type: string
+        name: class_id
+        in: path
+        required: true
+        description: Class Id
+  /teachers:
+    get:
+      summary: Get All Teachers
+      tags:
+        - Teacher
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        id_card:
+                          type: string
+                        nip:
+                          type: string
+                        nama_guru:
+                          type: string
+                        kode:
+                          type: string
+                        jk:
+                          type: string
+                        telp:
+                          type: string
+                        tmp_lahir:
+                          type: string
+                        tgl_lahir:
+                          type: string
+                        foto:
+                          type: string
+                        mapel:
+                          type: object
+                          properties:
+                            id:
+                              type: integer
+                            nama_mapel:
+                              type: string
+                            kelompok:
+                              type: string
+                x-examples:
+                  Example 1:
+                    status: true
+                    message: OK
+                    data:
+                      - id: 1
+                        id_card: "00001"
+                        nip: "12345"
+                        nama_guru: Harry Mochty
+                        kode: "122"
+                        jk: L
+                        telp: "08541203214"
+                        tmp_lahir: Tulungaggung
+                        tgl_lahir: "2023-07-12"
+                        foto: uploads/guru/33461114072023_kursi.jpg
+                        mapel:
+                          id: 1
+                          nama_mapel: RPL-1
+                          kelompok: A
+              examples:
+                Example 1:
+                  value:
+                    status: true
+                    message: OK
+                    data:
+                      - id: 1
+                        id_card: "00001"
+                        nip: "12345"
+                        nama_guru: Harry Mochty
+                        kode: "122"
+                        jk: L
+                        telp: "08541203214"
+                        tmp_lahir: Tulungaggung
+                        tgl_lahir: "2023-07-12"
+                        foto: uploads/guru/33461114072023_kursi.jpg
+                        mapel:
+                          id: 1
+                          nama_mapel: RPL-1
+                          kelompok: A
+      operationId: get-teachers
+      security:
+        - bearerAuth: []
+      description: Endpoint get all teachers
+  "/teachers/{teacher_id}":
+    get:
+      summary: Get Teacher by id
+      tags:
+        - Teacher
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      id_card:
+                        type: string
+                      nip:
+                        type: string
+                      nama_guru:
+                        type: string
+                      kode:
+                        type: string
+                      jk:
+                        type: string
+                      telp:
+                        type: string
+                      tmp_lahir:
+                        type: string
+                      tgl_lahir:
+                        type: string
+                      foto:
+                        type: string
+                      mapel:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          nama_mapel:
+                            type: string
+                          kelompok:
+                            type: string
+                x-examples:
+                  Example 1:
+                    status: true
+                    message: OK
+                    data:
+                      id: 1
+                      id_card: "00001"
+                      nip: "12345"
+                      nama_guru: Harry Mochty
+                      kode: "122"
+                      jk: L
+                      telp: "08541203214"
+                      tmp_lahir: Tulungaggung
+                      tgl_lahir: "2023-07-12"
+                      foto: uploads/guru/33461114072023_kursi.jpg
+                      mapel:
+                        id: 1
+                        nama_mapel: RPL-1
+                        kelompok: A
+              examples:
+                Example 1:
+                  value:
+                    status: true
+                    message: OK
+                    data:
+                      id: 1
+                      id_card: "00001"
+                      nip: "12345"
+                      nama_guru: Harry Mochty
+                      kode: "122"
+                      jk: L
+                      telp: "08541203214"
+                      tmp_lahir: Tulungaggung
+                      tgl_lahir: "2023-07-12"
+                      foto: uploads/guru/33461114072023_kursi.jpg
+                      mapel:
+                        id: 1
+                        nama_mapel: RPL-1
+                        kelompok: A
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  Example 1:
+                    message: Guru tidak ada!
+              examples:
+                Example 1:
+                  value:
+                    message: Guru tidak ada!
+      operationId: get-teachers
+      description: Get Teacher by id
+      security:
+        - bearerAuth: []
+    parameters:
+      - schema:
+          type: string
+        name: teacher_id
+        in: path
+        required: true
+        description: Teacher Id
+components:
+  schemas:
+    User:
+      title: User
+      type: object
+      description: ""
+      x-examples:
+        Alice Smith:
+          id: 142
+          firstName: Alice
+          lastName: Smith
+          email: alice.smith@gmail.com
+          dateOfBirth: "1997-10-31"
+          emailVerified: true
+          signUpDate: "2019-08-24"
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the given user.
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        dateOfBirth:
+          type: string
+          format: date
+          example: "1997-10-31"
+        emailVerified:
+          type: boolean
+          description: Set to true if the user's email has been verified.
+        createDate:
+          type: string
+          format: date
+          description: The date that the user was created.
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - emailVerified
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
