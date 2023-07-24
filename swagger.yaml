@@ -7,7 +7,7 @@ info:
 servers:
   - url: "http://localhost:3000"
     description: Local server
-  - url: "https://api-siakad.jasa-nikah-siri-amanah-profesional.com/"
+  - url: "https://api-siakad.jasa-nikah-siri-amanah-profesional.com"
     description: Server
 paths:
   /auth/register:
