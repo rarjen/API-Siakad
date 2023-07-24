@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "siswa_id",
         as: "rapot",
       });
+      Siswa.hasMany(models.Portofolio, {
+        foreignKey: "siswa_id",
+        as: "portofolio",
+      });
     }
   }
   Siswa.init(
