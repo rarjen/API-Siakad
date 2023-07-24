@@ -7,6 +7,8 @@ info:
 servers:
   - url: "http://localhost:3000"
     description: Local server
+  - url: "https://api-siakad.jasa-nikah-siri-amanah-profesional.com/"
+    description: Server
 paths:
   /auth/register:
     post:
@@ -1116,6 +1118,205 @@ paths:
         in: path
         required: true
         description: Teacher Id
+  /portofolio:
+    get:
+      summary: Get All Portofolio
+      tags:
+        - Portofolio
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      url:
+                        type: string
+                      deskripsi:
+                        type: string
+                      siswa:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          no_induk:
+                            type: string
+                          nis:
+                            type: string
+                          nama_siswa:
+                            type: string
+                          jk:
+                            type: string
+                          telp:
+                            type: string
+                          tmp_lahir:
+                            type: string
+                          tgl_lahir:
+                            type: string
+                          foto:
+                            type: string
+                x-examples:
+                  Example 1:
+                    status: true
+                    message: OK
+                    data:
+                      id: 1
+                      url: sertifikat/1690168208_Disp-597 Perijinan Penggunaan Ruang Lab. Komputer.pdf
+                      deskripsi: Coba 1
+                      siswa:
+                        id: 1
+                        no_induk: "1234"
+                        nis: "1234"
+                        nama_siswa: Siswa 1
+                        jk: L
+                        telp: "08541203214"
+                        tmp_lahir: Tulungaggung
+                        tgl_lahir: "2001-01-12"
+                        foto: uploads/siswa/48000924072023_denny_caknan.jpg
+              examples:
+                Example 1:
+                  value:
+                    status: true
+                    message: OK
+                    data:
+                      id: 1
+                      url: sertifikat/1690168208_Disp-597 Perijinan Penggunaan Ruang Lab. Komputer.pdf
+                      deskripsi: Coba 1
+                      siswa:
+                        id: 1
+                        no_induk: "1234"
+                        nis: "1234"
+                        nama_siswa: Siswa 1
+                        jk: L
+                        telp: "08541203214"
+                        tmp_lahir: Tulungaggung
+                        tgl_lahir: "2001-01-12"
+                        foto: uploads/siswa/48000924072023_denny_caknan.jpg
+      operationId: get-portofolio
+      description: Endpoint get all portofolio by siswa
+      security:
+        - bearerAuth: []
+  "/portofolio/{portofolio_id}":
+    get:
+      summary: Get Portofolio By Id
+      tags:
+        - Portofolio
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      url:
+                        type: string
+                      deskripsi:
+                        type: string
+                      siswa:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                          no_induk:
+                            type: string
+                          nis:
+                            type: string
+                          nama_siswa:
+                            type: string
+                          jk:
+                            type: string
+                          telp:
+                            type: string
+                          tmp_lahir:
+                            type: string
+                          tgl_lahir:
+                            type: string
+                          foto:
+                            type: string
+                x-examples:
+                  Example 1:
+                    status: true
+                    message: OK
+                    data:
+                      id: 1
+                      url: sertifikat/1690168208_Disp-597 Perijinan Penggunaan Ruang Lab. Komputer.pdf
+                      deskripsi: Coba 1
+                      siswa:
+                        id: 1
+                        no_induk: "1234"
+                        nis: "1234"
+                        nama_siswa: Siswa 1
+                        jk: L
+                        telp: "08541203214"
+                        tmp_lahir: Tulungaggung
+                        tgl_lahir: "2001-01-12"
+                        foto: uploads/siswa/48000924072023_denny_caknan.jpg
+              examples:
+                Example 1:
+                  value:
+                    status: true
+                    message: OK
+                    data:
+                      id: 1
+                      url: sertifikat/1690168208_Disp-597 Perijinan Penggunaan Ruang Lab. Komputer.pdf
+                      deskripsi: Coba 1
+                      siswa:
+                        id: 1
+                        no_induk: "1234"
+                        nis: "1234"
+                        nama_siswa: Siswa 1
+                        jk: L
+                        telp: "08541203214"
+                        tmp_lahir: Tulungaggung
+                        tgl_lahir: "2001-01-12"
+                        foto: uploads/siswa/48000924072023_denny_caknan.jpg
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  Example 1:
+                    message: Portofolio tidak ada
+              examples:
+                Example 1:
+                  value:
+                    message: Portofolio tidak ada
+      operationId: get-portofolio
+      description: Get portofolio by id
+      security:
+        - bearerAuth: []
+    parameters:
+      - schema:
+          type: string
+        name: portofolio_id
+        in: path
+        required: true
+        description: Portofolio Id
 components:
   schemas:
     User:
