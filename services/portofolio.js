@@ -10,7 +10,7 @@ const index = async (req) => {
       {
         model: Siswa,
         as: "siswa",
-        attributes: { exclude: ["created_at", "updated_at"] },
+        attributes: { exclude: ["created_at", "updated_at", "kelas_id"] },
       },
     ],
     where: { siswa_id: user.siswa_id },
@@ -30,7 +30,7 @@ const show = async (req) => {
       {
         model: Siswa,
         as: "siswa",
-        attributes: { exclude: ["created_at", "updated_at"] },
+        attributes: { exclude: ["created_at", "updated_at", "kelas_id"] },
       },
     ],
     attributes: { exclude: ["created_at", "updated_at", "siswa_id"] },
