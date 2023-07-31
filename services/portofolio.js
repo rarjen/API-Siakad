@@ -1,3 +1,4 @@
+require("dotenv").config();
 const { NotFoundError } = require("../errors");
 const { Portofolio, Siswa } = require("../models");
 const { BASE_PATH } = process.env;
@@ -16,10 +17,7 @@ const index = async (req) => {
     attributes: { exclude: ["created_at", "updated_at", "siswa_id"] },
   });
 
-  return {
-    id: result.id,
-    url: `${BASE_PATH}${result.url}`,
-  };
+  return result;
 };
 
 const show = async (req) => {
