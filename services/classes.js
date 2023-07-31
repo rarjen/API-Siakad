@@ -1,14 +1,9 @@
 const { NotFoundError } = require("../errors");
-const { Kelas, Paket, Guru, Mapel } = require("../models");
+const { Kelas, Guru, Mapel } = require("../models");
 
 const indexClasses = async (req) => {
   const result = await Kelas.findAll({
     include: [
-      {
-        model: Paket,
-        as: "paket",
-        attributes: { exclude: ["created_at", "updated_at"] },
-      },
       {
         model: Guru,
         as: "guru",
@@ -22,7 +17,7 @@ const indexClasses = async (req) => {
         attributes: { exclude: ["created_at", "updated_at", "mapel_id"] },
       },
     ],
-    attributes: { exclude: ["created_at", "updated_at", "paket_id"] },
+    attributes: { exclude: ["created_at", "updated_at"] },
   });
 
   return result;
@@ -34,11 +29,6 @@ const showClass = async (req) => {
     where: { id: class_id },
     include: [
       {
-        model: Paket,
-        as: "paket",
-        attributes: { exclude: ["created_at", "updated_at"] },
-      },
-      {
         model: Guru,
         as: "guru",
         include: [
@@ -51,7 +41,7 @@ const showClass = async (req) => {
         attributes: { exclude: ["created_at", "updated_at", "mapel_id"] },
       },
     ],
-    attributes: { exclude: ["created_at", "updated_at", "paket_id"] },
+    attributes: { exclude: ["created_at", "updated_at"] },
   });
 
   if (!result) {

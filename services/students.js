@@ -1,12 +1,4 @@
-const {
-  Siswa,
-  Kelas,
-  Ulangan,
-  Guru,
-  Paket,
-  Rapot,
-  Mapel,
-} = require("../models");
+const { Siswa, Kelas, Ulangan, Guru, Rapot, Mapel } = require("../models");
 
 const indexUlangan = async (req) => {
   const user = req.user;
@@ -21,14 +13,9 @@ const indexUlangan = async (req) => {
         model: Kelas,
         as: "kelas",
         attributes: {
-          exclude: ["created_at", "updated_at", "guru_id", "paket_id"],
+          exclude: ["created_at", "updated_at", "guru_id"],
         },
         include: [
-          {
-            model: Paket,
-            as: "paket",
-            attributes: { exclude: ["created_at", "updated_at"] },
-          },
           {
             model: Guru,
             as: "guru",
@@ -59,12 +46,7 @@ const indexReport = async (req) => {
         model: Kelas,
         as: "kelas",
         attributes: {
-          exclude: ["created_at", "updated_at", "paket_id", "guru_id"],
-        },
-        include: {
-          model: Paket,
-          as: "paket",
-          attributes: { exclude: ["created_at", "updated_at"] },
+          exclude: ["created_at", "updated_at", "guru_id"],
         },
       },
       {
