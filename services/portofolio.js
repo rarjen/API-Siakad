@@ -16,7 +16,10 @@ const index = async (req) => {
     attributes: { exclude: ["created_at", "updated_at", "siswa_id"] },
   });
 
-  return result;
+  return {
+    id: result.id,
+    url: `https://admin-siakad.jasa-nikah-siri-amanah-profesional.com/${result.url}`,
+  };
 };
 
 const show = async (req) => {
@@ -41,10 +44,7 @@ const show = async (req) => {
 
   return {
     id: result.id,
-    url: parse(
-      `https://admin-siakad.jasa-nikah-siri-amanah-profesional.com/${result.url}`,
-      true
-    ),
+    url: `https://admin-siakad.jasa-nikah-siri-amanah-profesional.com/${result.url}`,
   };
 };
 
