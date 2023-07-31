@@ -16,10 +16,7 @@ const index = async (req) => {
     attributes: { exclude: ["created_at", "updated_at", "siswa_id"] },
   });
 
-  return {
-    id: result.id,
-    url: `https://admin-siakad.jasa-nikah-siri-amanah-profesional.com/${result.url}`,
-  };
+  return result;
 };
 
 const show = async (req) => {
@@ -42,7 +39,10 @@ const show = async (req) => {
     throw new NotFoundError("Portofolio tidak ada");
   }
 
-  return result;
+  return {
+    id: result.id,
+    url: `https://admin-siakad.jasa-nikah-siri-amanah-profesional.com/${result.url}`,
+  };
 };
 
 module.exports = { show, index };
