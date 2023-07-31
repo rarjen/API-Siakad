@@ -1,6 +1,6 @@
-require("dotenv").config();
 const { NotFoundError } = require("../errors");
 const { Portofolio, Siswa } = require("../models");
+var parse = require("url-parse");
 
 const index = async (req) => {
   const user = req.user;
@@ -41,7 +41,10 @@ const show = async (req) => {
 
   return {
     id: result.id,
-    url: `https://admin-siakad.jasa-nikah-siri-amanah-profesional.com/${result.url}`,
+    url: parse(
+      `https://admin-siakad.jasa-nikah-siri-amanah-profesional.com/${result.url}`,
+      true
+    ),
   };
 };
 
