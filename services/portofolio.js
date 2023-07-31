@@ -1,5 +1,6 @@
 const { NotFoundError } = require("../errors");
 const { Portofolio, Siswa } = require("../models");
+const { BASE_PATH } = process.env;
 
 const index = async (req) => {
   const user = req.user;
@@ -15,7 +16,10 @@ const index = async (req) => {
     attributes: { exclude: ["created_at", "updated_at", "siswa_id"] },
   });
 
-  return result;
+  return {
+    id: result.id,
+    url: `${BASE_PATH}${result.url}`,
+  };
 };
 
 const show = async (req) => {
@@ -38,7 +42,7 @@ const show = async (req) => {
     throw new NotFoundError("Portofolio tidak ada");
   }
 
-  return result;
+  return `${BASE_PATH}${result.url}`;
 };
 
 module.exports = { show, index };
