@@ -24,7 +24,6 @@ module.exports = (sequelize, DataTypes) => {
   Kelas.init(
     {
       nama_kelas: DataTypes.STRING,
-      paket_id: DataTypes.INTEGER,
       guru_id: DataTypes.INTEGER,
     },
     {
