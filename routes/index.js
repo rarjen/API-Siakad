@@ -7,10 +7,11 @@ const portofolio = require("./portofolio");
 const absen = require("./absen");
 
 router.get("/", (req, res) => {
+  const ipAddress = req.socket.remoteAddress;
   return res.status(200).json({
     status: true,
     message: "success",
-    data: null,
+    data: ipAddress,
   });
 });
 
