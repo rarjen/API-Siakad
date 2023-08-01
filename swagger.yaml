@@ -1317,6 +1317,80 @@ paths:
         in: path
         required: true
         description: Portofolio Id
+  /absen:
+    post:
+      summary: Absen Siswa
+      operationId: post-absen
+      description: Endpoint for absen siswa
+      security:
+        - bearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                kehadiran_id:
+                  type: integer
+              x-examples:
+                Example 1:
+                  kehadiran_id: 1
+            examples:
+              Example 1:
+                value:
+                  kehadiran_id: 1
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: boolean
+                  message:
+                    type: string
+                  data:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      tanggal:
+                        type: string
+                      siswa_id:
+                        type: integer
+                      kehadiran_id:
+                        type: integer
+                      updated_at:
+                        type: string
+                      created_at:
+                        type: string
+                x-examples:
+                  Example 1:
+                    status: true
+                    message: Berhasil absen!
+                    data:
+                      id: 1
+                      tanggal: "2023-08-01T01:00:08.550Z"
+                      siswa_id: 1
+                      kehadiran_id: 1
+                      updated_at: "2023-08-01T01:00:08.551Z"
+                      created_at: "2023-08-01T01:00:08.551Z"
+              examples:
+                Example 1:
+                  value:
+                    status: true
+                    message: Berhasil absen!
+                    data:
+                      id: 1
+                      tanggal: "2023-08-01T01:00:08.550Z"
+                      siswa_id: 1
+                      kehadiran_id: 1
+                      updated_at: "2023-08-01T01:00:08.551Z"
+                      created_at: "2023-08-01T01:00:08.551Z"
+      tags:
+        - Students
 components:
   schemas:
     User:
