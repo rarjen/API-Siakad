@@ -4,6 +4,7 @@ const auth = require("./auth");
 const classes = require("./classes");
 const teachers = require("./teachers");
 const portofolio = require("./portofolio");
+const absen = require("./absen");
 
 router.get("/", (req, res) => {
   return res.status(200).json({
@@ -18,5 +19,6 @@ router.use("/auth", auth);
 router.use("/classes", classes);
 router.use("/teachers", teachers);
 router.use("/portofolio", portofolio);
+router.use("/absen", absen);
 
 module.exports = router;
