@@ -1397,6 +1397,22 @@ paths:
                       kehadiran_id: 1
                       updated_at: "2023-08-01T01:00:08.551Z"
                       created_at: "2023-08-01T01:00:08.551Z"
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  Example 1:
+                    message: Anda diluar jangkauan!
+              examples:
+                Example 1:
+                  value:
+                    message: Anda diluar jangkauan!
       tags:
         - Students
 components:
