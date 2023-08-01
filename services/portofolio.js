@@ -1,6 +1,5 @@
 const { NotFoundError } = require("../errors");
 const { Portofolio, Siswa } = require("../models");
-var parse = require("url-parse");
 
 const index = async (req) => {
   const user = req.user;
