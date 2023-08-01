@@ -1330,14 +1330,22 @@ paths:
             schema:
               type: object
               properties:
+                lat:
+                  type: number
+                lon:
+                  type: number
                 kehadiran_id:
                   type: integer
               x-examples:
                 Example 1:
+                  lat: 6.9826
+                  lon: 110.4092
                   kehadiran_id: 1
             examples:
               Example 1:
                 value:
+                  lat: 6.9826
+                  lon: 110.4092
                   kehadiran_id: 1
       responses:
         "201":
